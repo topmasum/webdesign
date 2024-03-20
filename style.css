@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+html {
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --black: black;
+    --purple: purple;
+    --light-color: #666;
+	--box-shadow:0.5rem 1.5rem rgba(0,0,0,.1)
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+	margin:0;
+	padding: 0;
+	box-sizing:border-box;
+	border:none;
+	outline:none;
+	text-decoration:none;
+	text-transform:none;
+	transition:all .2s linear;
+}
+html{
+	font-size:62.5%;
+	overflow-x:hidden;
+	scroll-padding-top:7rem;
+	scroll-behavior:smooth;
+}
+body{
+	background:#fff;
+}
+.header{
+	height:100px;
+	position:fixed;
+	top:0;
+	left:0;
+	right:0;
+	display:flex;
+	align-items:center;
+	border: 1px solid;
+	justify-content: space-between;
+	padding:2rem 9%;
+	background:#fff;
+	z-index:1000;
+	
+}
+.header .logo img {
+    margin-top: 10px;
+    height: 95%;
+    width: 65%;
+    display: inline-block;
+}
+.header .headbar a{
+	font-size:1.7rem;
+	border-radius:0.5rem;
+	padding:.5rem 1.5rem;
+	
+	
+}
+
+.header .headbar a:hover{
+color:#fff;
+background:linear-gradient(120deg,#FAB2FF,40%,#663399);
+}	
+.header .menubtn {
+	margin-right:60px;
+}
+.header .menubtn button {
+    padding: 10px 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+    transition: box-shadow 0.3s ease; /* Adding transition for smooth effect */
+}
+
+.header .menubtn button:hover {
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+}
+
+
+.main{
+	width:100%;
+	display:flex;
+}
+.main .left{
+	padding-top:50px;
+	text-align:center;
+	line-height:1.6;
+}
+.main .left h2{
+	padding-top:20%;
+	font-size:20px;
+	text-transform:capitalize;
+	color:#555555;
+	margin-top:50px;
+
+}
+.main .left h1{
+	font-size:42px;
+	text-transform:capitalize;
+	font-weight:700;
+	margin:15px 0;
+}
+.main .left p{
+	margin-bottom:20px;
+	font-size:15px;
+	color:#555555;
+	
+}
+.main .left button {
+    padding-top: 12px;
+    padding: 15px 45px;
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+    border-radius: 10px;
+    background-image: linear-gradient(to right, #649bff, #0070fa, #649bff);
+    transition: box-shadow 0.3s ease; /* Adding transition for smooth effect */
+}
+
+.main .left button:hover {
+    box-shadow: 0 0 20px 0 rgba(0, 112, 250, 0.6); /* Enhanced blue glow effect */
+}
