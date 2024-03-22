@@ -51,10 +51,31 @@ html{
     font-size: 1.7rem;
     color: var(--light);
     margin-left: 2rem;
+    position: relative; /* Add relative positioning to the anchor */
 }
+
+.header .navbar a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust as needed */
+    width: 0;
+    height: 2px; /* Height of the underline */
+    background-color: var(--green);
+    transition: width 0.3s ease, background-color 0.3s ease; /* Transition effect for width and color */
+}
+
+.header .navbar a:hover::after,
+.header .navbar a.active::after { /* Apply the hover effect to the active class as well */
+    width: 100%; /* Expand the width of the underline on hover or when active */
+    background-color: var(--green); /* Ensure the underline color remains green on hover or when active */
+}
+
 .header .navbar a:hover {
     color: var(--green); /* Change text color to green on hover */
 }
+
 
 #menu-btn{
     font-size: 2.5rem;
@@ -107,40 +128,45 @@ html{
         padding: 2rem;
     }
 }
-@media(max-width:768px)
-{
-   #menu-btn{
-    display: initial;
-   }
-   .header .navbar{
-    position: absolute;
-    top: 115%;
-    right: 2rem;
-    border-radius: .5rem;
-    box-shadow: var(--box-shadow);
-    border: var(--border);
-    width: 30rem;
-    background: #fff;
-    transform: scale(0);
-    opacity: 0;
-    transform-origin: top right;
-    transition: none;
-   }
-   .header .navbar .active{
-    transform: scale(1);
-    opacity: 1;
-    transition: .2s ease-out;
+@media (max-width:768px){
+
+    #menu-btn{
+        display: initial;
+    }
+
+    .header .navbar{
+        position: absolute;
+        top:115%; right: 2rem;
+        border-radius: .5rem;
+        box-shadow: var(--box-shadow);
+        width: 30rem;
+        border: var(--border);
+        background: #fff;
+        transform: scale(0);
+        opacity: 0;
+        transform-origin: top right;
+        transition: none;
+    }
+
+    .header .navbar.active{
+        transform: scale(1);
+        opacity: 1;
+        transition: .2s ease-out;
+    }
+
+    .header .navbar a{
+        font-size: 2rem;
+        display: block;
+        margin:2.5rem;
+    }
+
 }
-   .header .navbar a{
-    font-size: 2rem;
-    display: block;
-    margin: 2.5rem;
-   }
-}
+
 @media(max-width:450px)
 {
     html{
         font-size: 50%;
     }
+    
     
 }
