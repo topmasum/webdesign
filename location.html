@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Information - MEDI CARE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+         .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 10px;
+        }
+        
+        .box {
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+    border: 3px solid var(--green);
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    animation: slideInFromLeft 0.5s ease forwards;
+}
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+        
+        .hospital-name,
+        .map-location {
+            width: 50%; /* Equal width for left and right parts */
+            padding: 5px;
+            box-sizing: border-box;
+            
+        }
+        
+        .hospital-name {
+            background-color: #fff;
+           
+
+        }
+        .hospital-name b{
+            font-size: 24px;
+            color: var(--black);
+        }
+        
+        .map-location {
+            background-color: #e0e0e0;
+        }
+        
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 100%; /* For smaller devices, make it full width */
+                flex-direction: column; /* Display items in column for smaller devices */
+            }
+
+            .hospital-name,
+            .map-location {
+                width: 100%; /* Make both parts full width for smaller devices */
+            }
+        }
+       .search-bar {
+        position: relative;
+        width: 30%;
+        background-color: var(--green);
+        border-radius: 10px;
+        padding: 5px;
+        z-index: 1000;
+        position: fixed;
+        top: 25px; /* Adjust this value based on your header height */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .search-input {
+        width: 100%; /* Adjusted width for responsiveness */
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+        font-size: 16px;
+        color: black;
+    }
+
+    .search-input::placeholder {
+        color: #ccc;
+    }
+    
+    .header {
+        position: relative;
+    }
+
+    
+@media screen and (max-width: 600px) {
+    .search-bar {
+        top:5px;
+        width: calc(70% - 20px); /* Adjusted width for smaller devices */
+        max-width: 250px; /* Limiting maximum width for smaller devices */
+        left: calc(5% - 10px); /* Slightly move to the right */
+        transform: translateX(0%);
+    }
+    .header{
+        padding: 3.5rem;
+        position: fixed;
+    }
+    .header .logo {
+        display: none; /* Hide the logo */
+    }
+
+    /* Adjusting position for the menu button */
+    #menu-btn {
+        position: absolute;
+        top: 50%;
+        right: 20px; /* Adjust this value according to your design */
+        transform: translateY(-50%);
+    }
+   
+}
+
+
+</style>
+
+   
+</head>
+<body>
+<header class="header">
+    <a href="#" class="logo"> <i class="fas fa-heartbeat"></i>MEDI CARE</a> 
+    <nav class="navbar">
+        <a href="index.html#home">Home</a>
+    </nav>
+    <div id="menu-btn" class="fas fa-bars"></div>
+</header>
+<section>
+<div class="search-bar">
+    <input type="text" class="search-input" id="searchInput" placeholder="Search by name, specialization, or hospital">
+</div>
+</section>
+
+<section class="doctors" id="doctors">
+    <h1 class="heading"> Hospital<span> Locations</span> </h1>
+    <div class="container" id="hospitalContainer">
+        <!-- Hospital boxes will be dynamically generated here -->
+    </div>
+</section>
+
+
+<footer class="footer">
+    <!-- Footer content if needed -->
+</footer>
+
+<script src="script.js"></script>
+<script>
+ 
+ 
+    // Data for hospitals
+    var hospitals = [
+        { name: "PG hospital", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+        { name: "Masum hospital", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+        { name: "Oishy eye care", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+
+        // Add more hospital data as needed
+    ];
+
+    // Function to generate hospital boxes
+    function generateHospitalBoxes() {
+        var container = document.getElementById('hospitalContainer');
+        container.innerHTML = ''; // Clear existing content
+
+        hospitals.forEach(function(hospital) {
+            var box = document.createElement('div');
+            box.className = 'box';
+            
+            var hospitalName = document.createElement('div');
+            hospitalName.className = 'hospital-name';
+            hospitalName.innerHTML = '<b>' + hospital.name + '</b><br><p>' + hospital.address + '</p>';
+
+            var mapLocation = document.createElement('div');
+            mapLocation.className = 'map-location';
+            mapLocation.innerHTML = '<iframe src="' + hospital.mapURL + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+
+            box.appendChild(hospitalName);
+            box.appendChild(mapLocation);
+            container.appendChild(box);
+        });
+    }
+
+    // Call the function to generate hospital boxes
+    generateHospitalBoxes();
+
+    // Function to filter hospitals based on search input
+    function filterHospitals() {
+        var input, filter, container, box, hospitalName, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase();
+        container = document.getElementById('hospitalContainer');
+        box = container.getElementsByClassName('box');
+
+        for (i = 0; i < box.length; i++) {
+            hospitalName = box[i].getElementsByClassName('hospital-name')[0];
+            txtValue = hospitalName.textContent || hospitalName.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                box[i].style.display = ""; // Display the box if the hospital name matches
+            } else {
+                box[i].style.display = "none"; // Hide the box if the hospital name doesn't match
+            }
+        }
+    }
+
+    // Event listener for input changes
+    document.getElementById('searchInput').addEventListener('input', filterHospitals);
+
+
+   
+</script>
+
+
+</body>
+</html>
