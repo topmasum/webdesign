@@ -101,15 +101,8 @@
 <script>
    document.addEventListener("DOMContentLoaded", function() {
     const medicines = [
-        { name: "Napa 500mg", category: "Paracetamol", image: "image/napa-500-mg-1634182813132.jpg" },
-        { name: "Ace Plus", category: "Paracetamol", image: "image/ACE-PLUS-ePharma-Latifpur.jpg" },
-        { name: "Angilock", category: "Hypertension", image: "image/angilockHIGHPRESSURE.jpg" },
-        { name: "Omeprazole", category: "Gastric Pain", image: "image/20210425_004529_958094_Omeprazole.max-1800x1800.jpg" },
-        { name: "Betabis", category: "Hypertension", image: "image/betabisHIGHPRESSURE.jpg" },
-        { name: "Maxima", category: "Gastric Pain", image: "image/maxima.jpg" },
-        { name: "Maxpro", category: "Gastric Pain", image: "image/Maxpro-20-Tablet.jpg" },
-        { name: "Napa Extend", category: "Paracetamol", image: "image/napa-extend-tablet-665mg-12-tablets.jpg" },
-        { name: "Povital", category: "Nerve", image: "image/povitalNERVEMED.jpg" }
+        { name: "Napa 500mg", product: "Paracetamol",company:"Sqare Limited", image: "image/napa-500-mg-1634182813132.jpg" },
+        
         // Add more medicines as needed
     ];
 
@@ -120,24 +113,30 @@
         boxContainer.innerHTML = "";
         medicinesArray.forEach(medicine => {
             const box = document.createElement("div");
-            box.className = "box";
+box.className = "box";
 
-            const img = document.createElement("img");
-            img.src = medicine.image;
-            img.alt = medicine.name;
+const img = document.createElement("img");
+img.src = medicine.image;
+img.alt = medicine.name;
 
-            const name = document.createElement("h3");
-            name.textContent = medicine.name;
+const name = document.createElement("h3");
+name.textContent =  medicine.name;
 
-            const category = document.createElement("span");
-            category.textContent = "Category: " + medicine.category;
-            category.appendChild(document.createElement("br")); // Line break
+const product = document.createElement("span");
+product.textContent = "Product: " + medicine.product;
+product.appendChild(document.createElement("br")); // Line break
 
-            box.appendChild(img);
-            box.appendChild(name);
-            box.appendChild(category);
+const company = document.createElement("span");
+company.textContent = "Company: " + medicine.company;
+company.appendChild(document.createElement("br")); // Line break
 
-            boxContainer.appendChild(box);
+box.appendChild(img);
+box.appendChild(name);
+box.appendChild(product);
+box.appendChild(company);
+
+boxContainer.appendChild(box);
+
         });
     }
 
