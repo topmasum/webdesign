@@ -53,6 +53,14 @@
             font-size: 24px;
             color: var(--black);
         }
+        .hospital-name p {
+    margin: 5px 0; /* Add some margin between paragraphs */
+    font-size: 13px;
+}
+
+.hospital-name p:last-child {
+    font-size: 14px; /* Adjust the font size for the phone number */
+}
         
         .map-location {
             background-color: #e0e0e0;
@@ -213,36 +221,38 @@
  
  
     // Data for hospitals
-    var hospitals = [
-        { name: "PG hospital", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
-        { name: "Ispahani islamia eye hospital", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14606.733260500194!2d90.3850365!3d23.7586699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a63dcfe43f%3A0x59752af8fdc11b7a!2sIspahani%20Islamia%20Eye%20Institute%20and%20Hospital!5e0!3m2!1sen!2sbd!4v1711435633838!5m2!1sen!2sbd" },
-        { name: "Oishy eye care", address: "a/12,badda,dhaka,shahjadpu,how to do it in my way.", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+    // Data for hospitals
+var hospitals = [
+    { name: "PG hospital", address: "a/12, badda, dhaka, shahjadpur", phone: "+1234567890", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+    { name: "Ispahani islamia eye hospital", address: "a/12, badda, dhaka, shahjadpur", phone: "+1234567890", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14606.733260500194!2d90.3850365!3d23.7586699!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8a63dcfe43f%3A0x59752af8fdc11b7a!2sIspahani%20Islamia%20Eye%20Institute%20and%20Hospital!5e0!3m2!1sen!2sbd!4v1711435633838!5m2!1sen!2sbd" },
+    { name: "Oishy eye care", address: "a/12, badda, dhaka, shahjadpur", phone: "+1234567890", mapURL: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14609.01020456916!2d90.3953664!3d23.7383718!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8954649cee5%3A0x3bdcd530be93b17a!2sBangabandhu%20Sheikh%20Mujib%20Medical%20University!5e0!3m2!1sen!2sbd!4v1711343338556!5m2!1sen!2sbd" },
+    // Add more hospital data as needed
+];
 
-        // Add more hospital data as needed
-    ];
 
     // Function to generate hospital boxes
-    function generateHospitalBoxes() {
-        var container = document.getElementById('hospitalContainer');
-        container.innerHTML = ''; // Clear existing content
+   // Function to generate hospital boxes
+function generateHospitalBoxes() {
+    var container = document.getElementById('hospitalContainer');
+    container.innerHTML = ''; // Clear existing content
 
-        hospitals.forEach(function(hospital) {
-            var box = document.createElement('div');
-            box.className = 'box';
-            
-            var hospitalName = document.createElement('div');
-            hospitalName.className = 'hospital-name';
-            hospitalName.innerHTML = '<b>' + hospital.name + '</b><br><p>' + hospital.address + '</p>';
+    hospitals.forEach(function(hospital) {
+        var box = document.createElement('div');
+        box.className = 'box';
+        
+        var hospitalName = document.createElement('div');
+        hospitalName.className = 'hospital-name';
+        hospitalName.innerHTML = '<b>' + hospital.name + '</b><br><p>' + hospital.address + '</p><p><i class="fas fa-phone"></i> ' + hospital.phone + '</p>'; // Added phone number with phone icon
 
-            var mapLocation = document.createElement('div');
-            mapLocation.className = 'map-location';
-            mapLocation.innerHTML = '<iframe src="' + hospital.mapURL + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
+        var mapLocation = document.createElement('div');
+        mapLocation.className = 'map-location';
+        mapLocation.innerHTML = '<iframe src="' + hospital.mapURL + '" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
 
-            box.appendChild(hospitalName);
-            box.appendChild(mapLocation);
-            container.appendChild(box);
-        });
-    }
+        box.appendChild(hospitalName);
+        box.appendChild(mapLocation);
+        container.appendChild(box);
+    });
+}
 
     // Call the function to generate hospital boxes
     generateHospitalBoxes();

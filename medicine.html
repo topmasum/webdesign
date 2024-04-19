@@ -127,7 +127,7 @@
     </header>
 
 <section class="doctors" id="doctors">
-    <h1 class="heading">  <span>Medicine</span> </h1>
+    <h1 class="heading">Medicine <span>Info</span> </h1>
     <div class="box-container" id="box-container"></div>
 </section>
 
@@ -139,7 +139,7 @@
 <script>
    document.addEventListener("DOMContentLoaded", function() {
     const medicines = [
-        { name: "Napa 500mg", product: "Paracetamol",company:"Sqare Limited", image: "image/napa-500-mg-1634182813132.jpg" },
+        { name: "Napa 500mg",Ingredients:"500 mg Paracetemol BP, 65 mg Caffeine BP", indication: "Paracetamol",company:"Sqare Limited", image: "image/napa-500-mg-1634182813132.jpg" },
         
         // Add more medicines as needed
     ];
@@ -160,8 +160,12 @@ img.alt = medicine.name;
 const name = document.createElement("h3");
 name.textContent =  medicine.name;
 
+const ingre = document.createElement("span");
+ingre.textContent = "Ingredients: " + medicine.Ingredients;
+ingre.appendChild(document.createElement("br")); // Line break
+
 const product = document.createElement("span");
-product.textContent = "Product: " + medicine.product;
+product.textContent = "Indication: " + medicine.indication;
 product.appendChild(document.createElement("br")); // Line break
 
 const company = document.createElement("span");
@@ -170,6 +174,7 @@ company.appendChild(document.createElement("br")); // Line break
 
 box.appendChild(img);
 box.appendChild(name);
+box.appendChild(ingre);
 box.appendChild(product);
 box.appendChild(company);
 
