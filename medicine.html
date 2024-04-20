@@ -139,8 +139,13 @@
 <script>
    document.addEventListener("DOMContentLoaded", function() {
     const medicines = [
+
         { name: "Napa 500mg",Ingredients:"500 mg Paracetemol BP, 65 mg Caffeine BP", indication: "Paracetamol",company:"Sqare Limited", image: "image/napa-500-mg-1634182813132.jpg" },
-        
+        { name: "Adlock 10 mg",Type:"Tablet",Ingredients:"Propranolol Hydrochloride", indication: "Tuberculosis,Hypertrophic cardiomyopathy,MI,Anxiety,Diabetic nephropathy,HTN,Cardiac arrhythmias,Angina pectoris,Phaeochromocytoma,Migraine prophylaxis,Essential tremor",company:"Sonear Laboratories Ltd", image: "MedicineImg/adlock.jpg" },
+        {name: "Adrox",Type:"Suspension",Ingredients:"Cefuroxime 125 mg", indication: "Pharyngitis,Acute otitis media,Lyme disease,Susceptible infections,Sinusitis,Otitis media,Skin,Skin structure infections,Tonsillitis,Respiratory tract infections,Acute Maxillary Sinusitis,Urinary tract infections,Acute bacterial exacerbation of chronic bronchitis,Surgical Prophylaxis",company:"Ad-din Pharmaceuticals Ltd", image: "MedicineImg/adrox.jpg" },
+        {name: "Clamox 375",Type:"Tablet",Ingredients:"Amoxicillin + Clavulanic Acid", indication: "Bacterial infections,Acute otitis media,Acute bacterial sinusitis,Endocarditis,Dental abscess,H. pylori infection,Community-acquired pneumonia,Acute uncomplicated UTI,Uncomplicated gonorrhea,Severe or recurrent resp tract infections",company:"Opsonin Pharma Limited", image: "MedicineImg/clamox-375-mg-1631621681144.jpg" },
+        {name: "Vasco",Type:"Syrup",Ingredients:"Vitamin C (Ascorbic Acid)", indication: "Treatment or prevention of Vitamin C Deficiency, Scurvy, Infection,Trauma,Burns, Cold exposure,Following Surgery,Common cold,Fever,Scurvy,Stress,Cancer, Methaemoglobinaemia, Children receiving unfortified formulas. Also indicated in Hematuria,Dental Caries,Gum Diseases,Pyorrhea,Acne,Infertility, Atherosclerosis,Fractures,Leg ulcers,Hay fever,Vascular thrombosis prevention,Levodopa toxicity,Arsenic toxicity,Etc.",company:"Opsonin Pharma Limited", image: "MedicineImg/vasco.jpg" },
+
         // Add more medicines as needed
     ];
 
@@ -161,21 +166,35 @@ const name = document.createElement("h3");
 name.textContent =  medicine.name;
 
 const ingre = document.createElement("span");
-ingre.textContent = "Ingredients: " + medicine.Ingredients;
+const ingrelebel= document.createElement("strong");
+ingrelebel.textContent="Ingredients: "
+ingre.appendChild(ingrelebel);
+ingre.appendChild(document.createTextNode(medicine.Ingredients));
+ingre.className="ingre-lebel";
 ingre.appendChild(document.createElement("br")); // Line break
 
-const product = document.createElement("span");
-product.textContent = "Indication: " + medicine.indication;
-product.appendChild(document.createElement("br")); // Line break
 
-const company = document.createElement("span");
-company.textContent = "Company: " + medicine.company;
-company.appendChild(document.createElement("br")); // Line break
+
+const indication = document.createElement("span");
+            const indicationLabel = document.createElement("strong");
+            indicationLabel.textContent="Indication: "
+            indication.appendChild(indicationLabel);
+            indication.appendChild(document.createTextNode(medicine.indication));
+            indication.className="indication-lebel";
+            indication.appendChild(document.createElement("br"));
+
+            const company = document.createElement("span");
+            const companyLabel = document.createElement("strong");
+            companyLabel.textContent="Company: "
+            company.appendChild(companyLabel);
+            company.appendChild(document.createTextNode(medicine.company));
+            company.className="company-lebel";
+            company.appendChild(document.createElement("br"));
 
 box.appendChild(img);
 box.appendChild(name);
 box.appendChild(ingre);
-box.appendChild(product);
+box.appendChild(indication);
 box.appendChild(company);
 
 boxContainer.appendChild(box);
