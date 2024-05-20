@@ -53,6 +53,27 @@
             margin-bottom: 20px;
             padding: 15px;
         }
+        .form-container {
+            display: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
         .contact-container {
             display: none;
             margin-bottom: 20px;
@@ -62,16 +83,17 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .contact-container h2 {
-            margin-top: 0;
+        .contact-container img {
+            vertical-align: middle;
+            margin-right: 10px;
         }
         .contact-container label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
-        .contact-container input, .contact-container select {
-            width: calc(100% - 12px);
+        .contact-container input {
+            width: calc(100% - 40px);
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ddd;
@@ -101,8 +123,12 @@
             .menu a, .menu button {
                 padding: 8px;
             }
-            .card, .contact-container {
+            .card, .form-container, .contact-container {
                 padding: 10px;
+            }
+            .contact-container img {
+                width: 20px;
+                height: 20px;
             }
         }
     </style>
@@ -122,6 +148,33 @@
             <button onclick="logout()">Logout</button>
         </div>
         <div class="content">
+            <div class="form-container" id="appointmentForm">
+                <h2>Appoint a Doctor</h2>
+                <form id="appointmentForm">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="doctor">Doctor Name</label>
+                    <input type="text" id="doctor" name="doctor" required>
+                    <label for="time">Time</label>
+                    <input type="time" id="time" name="time" required>
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                    <label for="fee">Fee</label>
+                    <input type="text" id="fee" name="fee" value="500tk" readonly>
+                    <h3>Payment Information</h3>
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+                    <label for="expiryDate">Expiry Date</label>
+                    <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY" required>
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="123" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
             <div class="contact-container" id="contactContainer">
                 <h2>Contact Information</h2>
                 <form id="contactForm">
