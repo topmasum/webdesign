@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicare</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .menu {
+            width: 20%;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .menu a, .menu button {
+            display: block;
+            width: 100%;
+            color: #000;
+            padding: 10px;
+            text-decoration: none;
+            text-align: left;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .menu a:hover, .menu button:hover {
+            background-color: #ddd;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 15px;
+        }
+        .card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            padding: 15px;
+        }
+        .contact-container {
+            display: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .contact-container h2 {
+            margin-top: 0;
+        }
+        .contact-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .contact-container input, .contact-container select {
+            width: calc(100% - 12px);
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        .contact-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .contact-container button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 768px) {
+            .menu {
+                width: 100%;
+                box-shadow: none;
+            }
+            .content {
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            .menu a, .menu button {
+                padding: 8px;
+            }
+            .card, .contact-container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Medicare</h1>
+    </header>
+    <div class="container">
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">About</a>
+            <a href="#">Address</a>
+            <button onclick="showContact()">Contact</button>
+            <button onclick="showForm()">Appoint a Doctor</button>
+            <button onclick="logout()">Logout</button>
+        </div>
+        <div class="content">
+            <div class="contact-container" id="contactContainer">
+                <h2>Contact Information</h2>
+                <form id="contactForm">
+                    <label for="contactPhone">Phone Number</label>
+                    <input type="tel" id="contactPhone" name="contactPhone" placeholder="Enter your phone number" value="123-456-7890" required>
+                    <label for="contactEmail">Email</label>
+                    <input type="email" id="contactEmail" name="contactEmail" placeholder="Enter your email" value="example@example.com" required>
+                    <label for="contactWhatsapp">Whatsapp</label>
+                    <input type="tel" id="contactWhatsapp" name="contactWhatsapp" placeholder="Enter your Whatsapp number" value="+1234567890" required>
+                    <label for="contactTwitter">Twitter</label>
+                    <input type="text" id="contactTwitter" name="contactTwitter" placeholder="Enter your Twitter handle" value="@example" required>
+                    <button type="button" onclick="saveContact()">Save</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Dr. John Doe</h3>
+                <p>Time: 10:00 AM</p>
+                <a href="https://zoom.us/j/1234567890">Join Zoom Meeting</a>
+            </div>
+            <div class="card">
+                <h3>Dr. Jane Smith</h3>
+                <p>Time: 2:00 PM</p>
+                <a href="https://zoom.us/j/0987654321">Join Zoom Meeting</a>
+            </div>
+            <!-- Add more cards as needed -->
+        </div>
+    </div>
+    <script>
+        function showForm() {
+            var form = document.getElementById("appointmentForm");
+            var contact = document.getElementById("contactContainer");
+            if (form.style.display === "none" || form.style.display === "") {
+                form.style.display = "block";
+                contact.style.display = "none";
+            } else {
+                form.style.display = "none";
+            }
+        }
+
+        function showContact() {
+            var contact = document.getElementById("contactContainer");
+            var form = document.getElementById("appointmentForm");
+            if (contact.style.display === "none" || contact.style.display === "") {
+                contact.style.display = "block";
+                form.style.display = "none";
+            } else {
+                contact.style.display = "none";
+            }
+        }
+
+        function saveContact() {
+            alert("Contact information saved!");
+            // Implement saving logic here
+        }
+
+        function logout() {
+            if (confirm("Do you really want to leave?")) {
+                window.location.href = "index.html"; // Replace with the actual home page URL
+            }
+        }
+    </script>
+</body>
+</html>
