@@ -76,6 +76,89 @@
     display: block;
     margin: 2rem;
 }
+/* Existing styles */
+/* ... */
+
+/* Existing styles */
+/* ... */
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1001; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.modal-content img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.similar-medicines {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.similar-medicines .box {
+    cursor: pointer;
+}
+
+.similar-medicines .box img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.similar-medicines .box h3 {
+    font-size: 14px;
+    margin: 10px 0 5px 0;
+}
+
+/* Responsive styles for the modal */
+@media screen and (max-width: 600px) {
+    .modal-content {
+        width: 90%;
+        margin: 30% auto;
+    }
+}
 
 /* Media query for smaller devices */
 @media screen and (max-width: 600px) {
@@ -125,37 +208,59 @@
 </style>  
 </head>
 <body>
-<header class="header">
-    <a href="#" class="logo"> <i class="fas fa-heartbeat"></i>MEDI CARE</a> 
-    <nav class="navbar">
-        <a href="index.html#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="medicine.html">Medicine</a>
-        <a href="doctor.html">Doctors</a>
-        <a href="location.html">Locations</a>
-        <a href="#about">About</a>
-    </nav>
-    <div id="menu-btn" class="fas fa-bars"></div>
-    <div class="search-bar">
-        <input type="text" class="search-input" id="searchInput" placeholder="Search by name, specialization, or hospital">
-    </div>
+    <header class="header">
+        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i>MEDI CARE</a> 
+        <nav class="navbar">
+            <a href="index.html#home">Home</a>
+            <a href="#services">Services</a>
+            <a href="medicine.html">Medicine</a>
+            <a href="doctor.html">Doctors</a>
+            <a href="location.html">Locations</a>
+            <a href="#about">About</a>
+        </nav>
+        <div id="menu-btn" class="fas fa-bars"></div>
+        <div class="search-bar">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search by name, specialization, or hospital">
+        </div>
     </header>
-
-<section class="doctors" id="doctors">
-    <h1 class="heading">Medicine <span>Info</span> </h1>
-    <div class="box-container" id="box-container"></div>
-</section>
-
-<footer class="footer">
-    <!-- Footer content if needed -->
-</footer>
-
+    
+    <section class="doctors" id="doctors">
+        <h1 class="heading">Medicine <span>Info</span> </h1>
+        <div class="box-container" id="box-container"></div>
+    </section>
+    
+    <!-- Modal structure -->
+    <div id="medicineModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImg" src="" alt="Medicine Image">
+            <h3 id="modalName"></h3>
+            <p><strong>Ingredients: </strong><span id="modalIngredients"></span></p>
+            <p><strong>Indication: </strong><span id="modalIndication"></span></p>
+            <p><strong>Company: </strong><span id="modalCompany"></span></p>
+            <h4>Similar Medicines:</h4>
+            <div id="similarMedicines" class="similar-medicines"></div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <!-- Footer content if needed -->
+    </footer>
+    
+    <script src="script.js"></script>
+    </body>
+    
+    
 <script src="script.js"></script>
 <script>
- document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const medicines = [
         { name: "Napa 500mg", Ingredients: "500 mg Paracetemol BP, 65 mg Caffeine BP", indication: "Paracetamol", company: "Square Limited", image: "image/napa-500-mg-1634182813132.jpg" },
-        { name: "Adlock 10 mg", Type: "Tablet", Ingredients: "Propranolol Hydrochloride", indication: "Tuberculosis,Hypertrophic cardiomyopathy,MI,Anxiety,Diabetic nephropathy,HTN,Cardiac arrhythmias,Angina pectoris,Phaeochromocytoma,Migraine prophylaxis,Essential tremor", company: "Sonear Laboratories Ltd", image: "MedicineImg/adlock.jpg" },
+        { name: "Napa extend", Ingredients: "500 mg Paracetemol BP, 65 mg Caffeine BP", indication: "Paracetamol", company: "Square Limited", image: "image/napa-500-mg-1634182813132.jpg" },
+        { name: "Soft", Ingredients: "500 mg Paracetemol BP", indication: "Paracetamol", company: "Square Limited", image: "image/napa-500-mg-1634182813132.jpg" },
+        { name: "Paracetemol", Ingredients: "500 mg Paracetemol BP, 65 mg Caffeine BP", indication: "Paracetamol", company: "Square Limited", image: "image/napa-500-mg-1634182813132.jpg" },
+
+        { name: "Adlock 10 mg", Type: "Tablet", Ingredients: "Propranolol Hydrochloride", indication: "Tuberculosis,Hypertrophic cardiomyopathy,MI,Anxiety,Diabetic nephropathy,HTN,Cardiac arrhythmias,Angina pectoris,Phaeochromocytoma, Migraine prophylaxis,Essential tremor", company: "Sonear Laboratories Ltd", image: "MedicineImg/adlock.jpg" },
         { name: "Adrox", Type: "Suspension", Ingredients: "Cefuroxime 125 mg", indication: "Pharyngitis,Acute otitis media,Lyme disease,Susceptible infections,Sinusitis,Otitis media,Skin,Skin structure infections,Tonsillitis,Respiratory tract infections,Acute Maxillary Sinusitis,Urinary tract infections,Acute bacterial exacerbation of chronic bronchitis,Surgical Prophylaxis", company: "Ad-din Pharmaceuticals Ltd", image: "MedicineImg/adrox.jpg" },
         { name: "Clamox 375", Type: "Tablet", Ingredients: "Amoxicillin + Clavulanic Acid", indication: "Bacterial infections,Acute otitis media,Acute bacterial sinusitis,Endocarditis,Dental abscess,H. pylori infection,Community-acquired pneumonia,Acute uncomplicated UTI,Uncomplicated gonorrhea,Severe or recurrent resp tract infections", company: "Opsonin Pharma Limited", image: "MedicineImg/clamox-375-mg-1631621681144.jpg" },
         { name: "Vasco", Type: "Syrup", Ingredients: "Vitamin C (Ascorbic Acid)", indication: "Treatment or prevention of Vitamin C Deficiency, Scurvy, Infection,Trauma,Burns, Cold exposure,Following Surgery,Common cold,Fever,Scurvy,Stress,Cancer, Methaemoglobinaemia, Children receiving unfortified formulas. Also indicated in Hematuria,Dental Caries,Gum Diseases,Pyorrhea,Acne,Infertility, Atherosclerosis,Fractures,Leg ulcers,Hay fever,Vascular thrombosis prevention,Levodopa toxicity,Arsenic toxicity,Etc.", company: "Opsonin Pharma Limited", image: "MedicineImg/vasco.jpg" },
@@ -163,11 +268,25 @@
         { name: "Azithrocin", Type: "Tablet", Ingredients: "Azithromycin 500mg", indication: "Bacterial infections, Respiratory infections, Skin infections, Ear infections, STIs", company: "Pharma Corp", image: "MedicineImg/azithrocin.jpg" },
         { name: "Cetrimide", Type: "Cream", Ingredients: "Cetrimide 0.5%", indication: "Antiseptic, Skin infections, Minor cuts, Burns, Wounds", company: "SkinHeal Ltd", image: "MedicineImg/cetrimide.jpg" },
         { name: "Dolo 650", Type: "Tablet", Ingredients: "Paracetamol 650mg", indication: "Pain relief, Fever reduction", company: "HealthCare Pharma", image: "MedicineImg/dolo650.jpg" },
-        { name: "Erythrocin", Type: "Tablet", Ingredients: "Erythromycin 250mg", indication: "Bacterial infections, Respiratory infections, Skin infections, STIs", company: "MedLife Ltd", image: "MedicineImg/erythrocin.jpg" }
+        { name: "Erythrocin", Type: "Tablet", Ingredients: "Erythromycin 250mg", indication: "Bacterial infections, Respiratory infections, Skin infections, STIs", company: "MedLife Ltd", image: "MedicineImg/erythrocin.jpg" },
+        // New medicines
+        { name: "Ceftri", Type: "Injection", Ingredients: "Ceftriaxone 1g", indication: "Bacterial infections, Respiratory infections, Skin infections, Urinary tract infections, Meningitis", company: "BioPharma Ltd", image: "MedicineImg/ceftri.jpg" },
+        { name: "Paranorm", Type: "Tablet", Ingredients: "Paracetamol 500mg", indication: "Pain relief, Fever reduction", company: "Medico Ltd", image: "MedicineImg/paranorm.jpg" },
+        { name: "Claribid", Type: "Tablet", Ingredients: "Clarithromycin 500mg", indication: "Bacterial infections, Respiratory infections, Skin infections, H. pylori infection", company: "BioPharma Ltd", image: "MedicineImg/claribid.jpg" },
+        { name: "Vitafiz", Type: "Effervescent Tablet", Ingredients: "Vitamin C 1000mg", indication: "Vitamin C deficiency, Immune support, Antioxidant", company: "HealthCare Pharma", image: "MedicineImg/vitafiz.jpg" },
+        { name: "Calmep", Type: "Tablet", Ingredients: "Propranolol Hydrochloride", indication: "Hypertension, Anxiety, Migraine prophylaxis, Angina pectoris, Cardiac arrhythmias", company: "Zenith Pharma", image: "MedicineImg/calmep.jpg" }
     ];
 
     const boxContainer = document.getElementById("box-container");
     const searchInput = document.getElementById("searchInput");
+    const modal = document.getElementById("medicineModal");
+    const modalImg = document.getElementById("modalImg");
+    const modalName = document.getElementById("modalName");
+    const modalIngredients = document.getElementById("modalIngredients");
+    const modalIndication = document.getElementById("modalIndication");
+    const modalCompany = document.getElementById("modalCompany");
+    const similarMedicinesContainer = document.getElementById("similarMedicines");
+    const closeModal = document.querySelector(".close");
 
     function renderMedicines(medicinesArray) {
         boxContainer.innerHTML = "";
@@ -212,7 +331,50 @@
             box.appendChild(indication);
             box.appendChild(company);
 
+            // Add click event to open modal with medicine details
+            box.addEventListener("click", () => {
+                modalImg.src = medicine.image;
+                modalName.textContent = medicine.name;
+                modalIngredients.textContent = medicine.Ingredients;
+                modalIndication.textContent = medicine.indication;
+                modalCompany.textContent = medicine.company;
+                showSimilarMedicines(medicine);
+                modal.style.display = "block";
+            });
+
             boxContainer.appendChild(box);
+        });
+    }
+
+    function showSimilarMedicines(selectedMedicine) {
+        similarMedicinesContainer.innerHTML = "";
+        const similarMedicines = medicines.filter(medicine => 
+            medicine !== selectedMedicine && medicine.Ingredients === selectedMedicine.Ingredients
+        );
+        similarMedicines.forEach(medicine => {
+            const box = document.createElement("div");
+            box.className = "box";
+
+            const img = document.createElement("img");
+            img.src = medicine.image;
+            img.alt = medicine.name;
+
+            const name = document.createElement("h3");
+            name.textContent = medicine.name;
+
+            box.appendChild(img);
+            box.appendChild(name);
+
+            box.addEventListener("click", () => {
+                modalImg.src = medicine.image;
+                modalName.textContent = medicine.name;
+                modalIngredients.textContent = medicine.Ingredients;
+                modalIndication.textContent = medicine.indication;
+                modalCompany.textContent = medicine.company;
+                showSimilarMedicines(medicine);
+            });
+
+            similarMedicinesContainer.appendChild(box);
         });
     }
 
@@ -230,10 +392,19 @@
         filterMedicines(this.value.trim());
     });
 
+    closeModal.addEventListener("click", () => {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
     renderMedicines(medicines);
 });
 
-   
 </script>
 </body>
 </html>
