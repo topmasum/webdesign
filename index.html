@@ -10,7 +10,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
+<style>
+      .dropdown-container {
+        position: relative;
+        display: inline-block;
+        margin-top: 20px;
+    }
 
+    .dropbtn {
+        background-color: var(--green); /* Change to your preferred color */
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .dropbtn:hover, .dropbtn:focus {
+        background-color: #23b79a; /* Change to your preferred hover color */
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown-container:hover .dropdown-content {
+        display: block;
+    }
+</style>
 </head>
 <body>
 <header class="header">
@@ -21,14 +67,14 @@
         <a href="medicine.html">Medicine</a>
         <a href="doctor.html">Doctors</a>
         <a href="location.html">Locations</a>
-        <a href="#about">About</a>
+        <a href="blog.html">Blog</a>
     </nav>
     <div id="menu-btn" class="fas fa-bars"></div>
 </header>
 <section class="home" id="home">
-
+ 
     <div class="image">
-        <img src="image/home-img.svg" alt="">
+        <img src="image/about-img.svg" alt="">
     </div>
 
     <div class="content">
@@ -124,7 +170,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="image/about-img.svg" alt="">
+            <img src="image/home-img.svg" alt="">
         </div>
 
         <div class="content">
@@ -151,11 +197,13 @@
 
       
             <h3>make appointment</h3>
-            <input type="text"name="name" placeholder="your name" class="box">
-            <input type="number"name="number" placeholder="your number" class="box">
-            <input type="email"name="email" placeholder="your email" class="box">
-            <input type="date"name="date" class="box">
-            <input type="submit" name="submit" value="appointment now" class="btn">
+            <div class="dropdown-container">
+                <button class="dropbtn">Appoint Now</button>
+                <div class="dropdown-content">
+                    <a href="signup.php">Sign Up</a>
+                    <a href="login.php">Login</a>
+                </div>
+            </div>
         </form>
 
     </div>
