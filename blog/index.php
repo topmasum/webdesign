@@ -18,6 +18,27 @@ if (isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Blog Website</title>
+<style type="text/css">
+    .learn-more-button {
+    background-color: #16a085;
+    color: white;
+    border: 1px solid ;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    text-transform: uppercase; /* Uppercase text */
+    font-weight: bold; /* Bold text */
+}
+
+.learn-more-button:hover {
+    background-color: #fff;
+    color: #16a085;
+    border: 1px solid #16a085;
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+</style>
 </head>
 <body>
     <header>
@@ -38,11 +59,11 @@ if (isset($_SESSION['user_id'])) {
                 <div class="blog-card">
                     <h2><?= htmlspecialchars($blog['title']) ?></h2>
                     <p>by <?= htmlspecialchars($blog['username']) ?></p>
-                    <p><?= substr(htmlspecialchars($blog['content']), 0, 100) ?>...</p>
-                    <a href="blog.php?id=<?= $blog['id'] ?>">Learn More</a>
+                    <p><?= htmlspecialchars(substr($blog['content'], 0, 100)) ?>...</p>
+                    <button class="learn-more-button" onclick="window.location.href='blog.php?id=<?= htmlspecialchars($blog['id']) ?>'">Learn More</button>
                     <?php if (isset($_SESSION['user_id']) && $blog['user_id'] == $_SESSION['user_id']): ?>
                         <form action="delete_blog.php" method="POST" style="display:inline;">
-                            <input type="hidden" name="blog_id" value="<?= $blog['id'] ?>">
+                            <input type="hidden" name="blog_id" value="<?= htmlspecialchars($blog['id']) ?>">
                             <button type="submit" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</button>
                         </form>
                     <?php endif; ?>

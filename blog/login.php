@@ -31,16 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
-    <?php if (isset($error)) echo "<p>$error</p>"; ?>
     <form method="POST">
+        <h1>Login</h1>
+        <?php if (isset($error)) echo "<p>$error</p>"; ?>
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Login</button>
     </form>
 </body>
 </html>
+
