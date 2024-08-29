@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-       * {
+        /* Add your existing styles here... */
+         * {
             box-sizing: border-box
         }
         body {
@@ -304,7 +306,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i>MEDI CARE</a> 
+        <a href="#" class="logo"> <i class="fas fa-heartbeat"></i>MEDI CARE</a>
         <nav class="navbar">
             <a href="index.html#home">Home</a>
             <a href="#services">Services</a>
@@ -315,51 +317,53 @@
         </nav>
         <div id="menu-btn" class="fas fa-bars"></div>
     </header>
+
     <div class="contact-header">
         <h1 class="heading"> Blood <span>Info</span> </h1>
     </div>
+
     <section class="footer">
         <div class="box-container">
             <div class="box">
-                <a><h1>Blood Bank & Trunsfusion Center</h1> <i class="fas fa-phone"></i> +8801751-505030</a>
+                <a><h1>Blood Bank & Transfusion Center</h1> <i class="fas fa-phone"></i> +8801751-505030</a>
                 <a><h1>Bangladesh Blood Bank and Transfusion Center</h1> <i class="fas fa-phone"></i> +8801850-077185</a>
-                <a><h1>Bangladesh Red Crescent Society</h1> <i class="fas fa-phone"></i> +8801716346930</a>                <a>
-                    <h1>Badhon</h1>
-                    <span><i class="fas fa-phone"></i>+8801534982674</span><br>
+                <a><h1>Bangladesh Red Crescent Society</h1> <i class="fas fa-phone"></i> +8801716346930</a>
+                <a><h1>Badhon</h1>
+                    <span><i class="fas fa-phone"></i> +8801534982674</span><br>
                     <span><a class="link" href="https://www.badhan.org/">www.badhon.org</a></span>
                 </a>
             </div>
         </div>
     </section>
-    
+
     <div class="button1">
-        <button  class="reg-button" onclick="openForm()" >Registration for blood donation</button>
-      </div>
-  
-      <div class="register-form-container" id="registerForm">
-        <form class="register-form-content" method="post" action="register.php" onsubmit="submitForm()">
+        <button class="reg-button" onclick="openForm()">Registration for blood donation</button>
+    </div>
+
+    <div class="register-form-container" id="registerForm">
+        <form class="register-form-content" id="registrationForm" onsubmit="submitForm(event)">
             <span class="close" onclick="closeForm()">&times;</span>
             <h2>Registration Form</h2>
             <div>
                 <label for="name"><b>Name</b></label>
                 <input type="text" placeholder="Enter Name" name="name" required>
             </div>
-        
+
             <div>
                 <label for="email"><b>Email</b></label>
                 <input type="email" placeholder="Enter Email" name="email" required>
             </div>
-        
+
             <div>
                 <label for="phone"><b>Phone Number</b></label>
                 <input type="text" placeholder="Enter Phone Number" name="phone" required>
             </div>
-        
+
             <div>
                 <label for="nid"><b>NID Number</b></label>
                 <input type="text" placeholder="Enter NID Number" name="nid" required>
             </div>
-        
+
             <div>
                 <label for="blood_type"><b>Blood Type</b></label>
                 <select name="blood_type" required>
@@ -374,25 +378,25 @@
                     <option value="O-">O-</option>
                 </select>
             </div>
-        
+
             <div>
                 <label for="image"><b>Image Attachment</b></label>
                 <input type="file" accept="image/*" name="image" required>
             </div>
-        
+
             <button type="submit">Submit</button>
         </form>
-        
-        
-      </div>
-      <section class="review" id="review">
+    </div>
+
+    <section class="review" id="review">
         <h1 class="heading">Our <span>Blood Donator</span></h1>
-        <div class="box-container">
+        <div class="box-container" id="cardContainer">
+            <!-- Existing cards here -->
             <div class="box">
                 <img src="image/pexels-justin-shaifer-1222271.jpg" alt="">
                 <h3>Rimon Khan</h3>
-                <p class="text">          
-                 <strong>Phone:</strong> +1234567890<br>
+                <p class="text">
+                    <strong>Phone:</strong> +1234567890<br>
                     <strong>Email:</strong> johndoe@example.com<br>
                     <strong>Blood Type:</strong> A+
                 </p>
@@ -417,23 +421,94 @@
             </div>
         </div>
     </section>
-    
+
     <script src="script.js"></script>
     <script>
-        
-        function openForm() {
-            document.getElementById("registerForm").style.display = "block";
-        }
+       function openForm() {
+    document.getElementById("registerForm").style.display = "block";
+}
 
-        function closeForm() {
-            document.getElementById("registerForm").style.display = "none";
-        }
+function closeForm() {
+    document.getElementById("registerForm").style.display = "none";
+}
 
-        // Submit form
-        function submitForm() {
-            alert("Registration Successful!");
-            closeForm();
-        }
+// Function to save cards to local storage
+function saveCardsToLocalStorage(cards) {
+    localStorage.setItem('cards', JSON.stringify(cards));
+}
+
+// Function to load cards from local storage
+function loadCardsFromLocalStorage() {
+    const savedCards = localStorage.getItem('cards');
+    return savedCards ? JSON.parse(savedCards) : [];
+}
+
+// Function to render cards
+function renderCards(cards) {
+    const cardContainer = document.getElementById('cardContainer');
+    cardContainer.innerHTML = ''; // Clear the container before adding new cards
+    cards.forEach((card) => {
+        const newCard = document.createElement('div');
+        newCard.className = 'box';
+        newCard.innerHTML = `
+            <img src="${card.image}" alt="">
+            <h3>${card.name}</h3>
+            <p class="text">
+                <strong>Phone:</strong> ${card.phone}<br>
+                <strong>Email:</strong> ${card.email}<br>
+                <strong>Blood Type:</strong> ${card.bloodType}
+            </p>
+        `;
+        cardContainer.appendChild(newCard);
+    });
+}
+
+// Initial load
+let cards = loadCardsFromLocalStorage();
+renderCards(cards);
+
+// Submit form and create a new card
+function submitForm(event) {
+    event.preventDefault(); // Prevent form from submitting the traditional way
+
+    // Get form data
+    const form = document.getElementById('registrationForm');
+    const formData = new FormData(form);
+
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
+    const bloodType = formData.get('blood_type');
+    const imageFile = formData.get('image');
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const imgSrc = event.target.result;
+
+        // Create a new card object
+        const newCard = {
+            name: name,
+            email: email,
+            phone: phone,
+            bloodType: bloodType,
+            image: imgSrc
+        };
+
+        // Add the new card to the array of cards and save to local storage
+        cards.push(newCard);
+        saveCardsToLocalStorage(cards);
+
+        // Render the new card
+        renderCards(cards);
+
+        closeForm(); // Close the form after submission
+        alert("Registration Successful!");
+    };
+
+    reader.readAsDataURL(imageFile); // Read the image as a data URL
+}
+
     </script>
 </body>
 </html>
+
