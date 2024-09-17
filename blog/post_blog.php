@@ -31,6 +31,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Post Blog</title>
     <link rel="stylesheet" href="styles.css">
+     <style>
+        /* Increase the size of the content textarea */
+        textarea {
+            
+            height: 300px; /* Increase height */
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical; /* Allows user to resize vertically */
+        }
+    </style>
 </head>
 <body>
     <h1>Post Blog</h1>
