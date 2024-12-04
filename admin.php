@@ -24,26 +24,33 @@ $result = $conn->query($sql);
    <div class="container">
         <h1>Doctor Information</h1>
         <table border="1">
-            <tr>
-                <th>Name</th>
-                <th>Degree</th>
-                <th>Medical</th>
-                <th>Email</th>
-                <th>Category</th>
-                <th>Visiting Days</th>
-                <th>Visiting Time</th>
-            </tr>
-            <?php while($row = $result->fetch_assoc()) { ?>
-            <tr>
-                <td><?php echo $row['name']; ?></td>
-                <td><?php echo $row['degree']; ?></td>
-                <td><?php echo $row['medical']; ?></td>
-                <td><?php echo $row['email']; ?></td>
-                <td><?php echo $row['category']; ?></td>
-                <td><?php echo $row['visiting_days']; ?></td>
-                <td><?php echo $row['visiting_time']; ?></td>
-            </tr>
-            <?php } ?>
+   <tr>
+    <th>Name</th>
+    <th>Degree</th>
+    <th>Medical</th>
+    <th>Email</th>
+    <th>Category</th>
+    <th>Visiting Days</th>
+    <th>Visiting Time</th>
+    <th>Image</th>
+</tr>
+<?php while($row = $result->fetch_assoc()) { ?>
+<tr>
+    <td><?php echo $row['name']; ?></td>
+    <td><?php echo $row['degree']; ?></td>
+    <td><?php echo $row['medical']; ?></td>
+    <td><?php echo $row['email']; ?></td>
+    <td><?php echo $row['category']; ?></td>
+    <td><?php echo $row['visiting_days']; ?></td>
+    <td><?php echo $row['visiting_time']; ?></td>
+    <td>
+        <?php if ($row['image']): ?>
+            <img src="uploads/<?php echo $row['image']; ?>" alt="Doctor Image" width="100">
+        <?php endif; ?>
+    </td>
+</tr>
+<?php } ?>
+
         </table>
     </div>
 </body>

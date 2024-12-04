@@ -11,48 +11,52 @@
         <h1>Register as Doctor</h1>
         <button id="registerButton">Register as Doctor</button>
 <div id="formContainer" class="hidden">
-    <form action="register.php" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+   <form action="register.php" method="POST" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
 
-        <label for="degree">Degree:</label>
-        <input type="text" id="degree" name="degree" required>
+    <label for="degree">Degree:</label>
+    <input type="text" id="degree" name="degree" required>
 
-        <label for="medical">Medical Where Seated:</label>
-        <input type="text" id="medical" name="medical" required>
+    <label for="medical">Medical Where Seated:</label>
+    <input type="text" id="medical" name="medical" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-         <label for="category">Category:</label>
-                <select id="category" name="category" required>
-                    <option value="General Physician">General Physician</option>
-                    <option value="Pediatrician">Pediatrician</option>
-                    <option value="Cardiologist">Cardiologist</option>
-                    <option value="Dermatologist">Dermatologist</option>
-                    <option value="Neurologist">Neurologist</option>
-                </select>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
 
-        <label for="visiting_days">Visiting Days:</label>
-        <select id="daySelector">
-            <option value="Sat">Saturday</option>
-            <option value="Sun">Sunday</option>
-            <option value="Mon">Monday</option>
-            <option value="Tue">Tuesday</option>
-            <option value="Wed">Wednesday</option>
-            <option value="Thu">Thursday</option>
-            <option value="Fri">Friday</option>
-        </select>
-        <button type="button" id="addDayButton">Select Day</button>
+    <label for="category">Category:</label>
+    <select id="category" name="category" required>
+        <option value="General Physician">General Physician</option>
+        <option value="Pediatrician">Pediatrician</option>
+        <option value="Cardiologist">Cardiologist</option>
+        <option value="Dermatologist">Dermatologist</option>
+        <option value="Neurologist">Neurologist</option>
+    </select>
 
-        <!-- Hidden input to hold selected days -->
-        <input type="hidden" id="visiting_days" name="visiting_days">
-        <div id="selectedDaysDisplay"></div>
+    <label for="image">Profile Picture:</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
 
-        <label for="visiting_time">Visiting Time:</label>
-        <input type="text" id="visiting_time" name="visiting_time" placeholder="e.g., 7:30 PM - 9:30 PM" required>
+    <label for="daySelector">Day Selector:</label>
+    <select id="daySelector">
+        <option value="Sat">Saturday</option>
+        <option value="Sun">Sunday</option>
+        <option value="Mon">Monday</option>
+        <option value="Tue">Tuesday</option>
+        <option value="Wed">Wednesday</option>
+        <option value="Thu">Thursday</option>
+        <option value="Fri">Friday</option>
+    </select>
+    <button type="button" id="addDayButton">Add Day</button>
 
-        <button type="submit">Submit</button>
-    </form>
+    <div id="selectedDaysDisplay"></div>
+    <input type="hidden" id="visiting_days" name="visiting_days">
+
+    <label for="visiting_time">Visiting Time:</label>
+    <input type="text" id="visiting_time" name="visiting_time" placeholder="e.g., 7:30 PM - 9:30 PM" required>
+
+    <button type="submit">Submit</button>
+</form>
+
 </div>
 
 
